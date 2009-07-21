@@ -1,4 +1,3 @@
-#! /usr/local/bin/cxx
 #include "../json.hpp"
 #include <iostream>
 using namespace std;

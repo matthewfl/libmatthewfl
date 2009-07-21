@@ -6,13 +6,9 @@
 #include <deque>
 #include <boost/any.hpp>
 
-#include <boost/algorithm/string/replace.hpp> // used for cleaning up the string 
+#include <boost/algorithm/string/replace.hpp> // used for cleaning up the string
 
 #include <stdlib.h> // used for string to long
-
-#include <iostream>
-
-#define debug(TXT) std::cout << __LINE__ << " " << TXT << std::endl;
 
 // TODO: move this out
 namespace matthewfl {
@@ -168,6 +164,9 @@ namespace matthewfl {
 	case '[':
 	  type = Tarray;
 	  break;
+	case ']':
+	case '}':
+	  return j; // make a null object
 	case '"':
 	  type = Tstring;
 	  break;
@@ -191,27 +190,22 @@ namespace matthewfl {
       case Tobject: // should be on an {
 	j = Object();
 	while(!compare(s[place], "}") && place <= s.size()) {
-	  debug("obj");
-	  for(;!compare(s[place], "\"") && !compare(s[place], "}") && place <= s.size(); place++) debug(s[place]); // find the start of the name
+	  for(;!compare(s[place], "\"") && !compare(s[place], "}") && place <= s.size(); place++); // find the start of the name
 	  if(compare(s[place], "}") || place >= s.size()) // empty object
 	    break;
 	  String name = getString(s, place);
-	  debug(name);
 	  for(;!compare(s[place], ":"); place++);place++; // move up to the object
-	  debug("calling");
 	  j.set(name, prase(s, place));
 	  for(;!compare(s[place], ",") && !compare(s[place], "}") && !compare(s[place], "\"") && place <= s.size();place++);
-	  debug(s.size());
-	  debug(place);
 	}
 	place++;
 	break;
       case Tarray: // should be on an [
 	j = Array();
 	while(!compare(s[place], "]") && place <= s.size()) {
-	  // TODO: add empty array
+	  // TODO: add empty array, will make a one element array at this point
 	  j.push(prase(s, ++place));
-	  for(;!compare(s[place], ",") && !compare(s[place], "]") && place <= s.size();place++) debug(s[place]);
+	  for(;!compare(s[place], ",") && !compare(s[place], "]") && place <= s.size();place++);
 	}
 	place++;
 	break;
