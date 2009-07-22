@@ -104,7 +104,7 @@ namespace matthewfl {
     
     // Object functions
     json & operator [] (const String &s) { // we assume that it is an object
-      return any_cast<Object>(this)->find(s)->second;
+      return (*any_cast<Object>(this))[s];
     }
     
     void set(String s, json d) {
