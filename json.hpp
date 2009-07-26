@@ -1,3 +1,25 @@
+/*
+	This file is part of Libmatthewfl.
+
+	Libmatthewfl is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Lesser General Public License as published by
+	the Free Software Foundation, version 3.
+
+	Libmatthewfl is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU Lesser General Public License
+	along with Libmatthewfl.  If not, see <http://www.gnu.org/licenses/>.
+
+	Author: Matthew Francis-Landau <matthew@matthewfl.com>
+	http://github.com/matthewfl/libmatthewfl/tree/master
+	http://matthewfl.github.com/libmatthewfl
+	http://matthewfl.com
+*/
+
+
 #ifndef _Matthewfl_json_hpp
 #define _Matthewfl_json_hpp
 
@@ -9,6 +31,7 @@
 #include <boost/algorithm/string/replace.hpp> // used for cleaning up the string
 
 #include <stdlib.h> // used for string to long
+
 
 // TODO: move this out
 namespace matthewfl {
@@ -194,7 +217,7 @@ namespace matthewfl {
 	  if(compare(s[place], "}") || place >= s.size()) // empty object
 	    break;
 	  String name = getString(s, place);
-	  for(;!compare(s[place], ":"); place++);place++; // move up to the object
+	  //for(;!compare(s[place], ":") && !compare(s[place-1], ":"); place++);place++; // move up to the object
 	  j.set(name, prase(s, place));
 	  for(;!compare(s[place], ",") && !compare(s[place], "}") && !compare(s[place], "\"") && place <= s.size();place++);
 	}
@@ -249,11 +272,12 @@ namespace matthewfl {
       boost::replace_all(str, "\\\'", "\'");
       boost::replace_all(str, "\\n",  "\n");
       boost::replace_all(str, "\\r",  "\r");
+      boost::replace_all(str, "\\/", "/");
+      boost::replace_all(str, "\\\\", "\\");
       // is there anything else that I need
-
-
+      place++;
       return str;
-      // should return place one after closeing "
+      // should return one place after closeing "
     }
     Number getNumber(String &s, unsigned int &place) {
       String str;

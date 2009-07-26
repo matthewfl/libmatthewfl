@@ -1,0 +1,4 @@
+this is a compile from source and run system that I use to make test go faster
+Install by copying cxx to /usr/loca/bin
+sudo "cp cxx /usr/local/bin"
+sudo "chmod +x /usr/local/bin/cxx"

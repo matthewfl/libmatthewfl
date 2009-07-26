@@ -1,3 +1,25 @@
+/*
+	This file is part of Libmatthewfl.
+
+	Libmatthewfl is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Lesser General Public License as published by
+	the Free Software Foundation, version 3.
+
+	Libmatthewfl is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU Lesser General Public License
+	along with Libmatthewfl.  If not, see <http://www.gnu.org/licenses/>.
+
+	Author: Matthew Francis-Landau <matthew@matthewfl.com>
+	http://github.com/matthewfl/libmatthewfl/tree/master
+	http://matthewfl.github.com/libmatthewfl
+	http://matthewfl.com
+*/
+
+
 #ifndef _PointPool_hpp
 #define _PointPool_hpp
 

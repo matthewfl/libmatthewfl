@@ -5,11 +5,12 @@ using namespace std;
 
 using namespace matthewfl;
 int main (int argc, char * argv[]) {
+  string other;
   matthewfl::json::String s;
   s = "{\"hi\":{\"a\":[\"dd\", \"a\", 12345, null], \"b\":[true, false]}}";
-  cout << "start\n";
+  //cout << "first json test simple\n";
   matthewfl::json j;
-  j.prase(s);
+  /*j.prase(s);
   cout << "waback\n";
   cout << any_cast< json::Object >(j).size() << endl;
   //  cout << j["hi"]["a"][1].cast< json::String >() <<endl;
@@ -24,6 +25,15 @@ int main (int argc, char * argv[]) {
   //cout << o.size();
   //  cout << any_cast <json::String> (any_cast <json::Object>(j)["hi"]);
   //  cout << j.type().name() << endl
-  cout << "return\n";
+  cout << "second json\n";
+  */
+  cin >> other;
+  j.prase(other);
+  cout << "size: " << j.size() <<endl << endl;
+  for(json::Object::iterator it = any_cast<json::Object>(j).begin();
+      it != any_cast<json::Object>(j).end(); it++) {
+    cout << it->first << endl;
+  }
+  cout << "\nreturn\n";
   return 0;
 }
