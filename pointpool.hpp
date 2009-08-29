@@ -49,12 +49,12 @@ public:
     delete content;
   }
   template<typename T> T * add(T * d) {
-    /// add a pointer to the list to be removed latter
+    /// add a pointer to the list to be removed later
     content = new holder<T>(d, content);
     return d;
   }
   template <typename T> inline T * operator() (T * d)  {
-    /// add a pointer to the list to be removed latter
+    /// add a pointer to the list to be removed later
     return add<T>(d);
   }
   void clear () {
